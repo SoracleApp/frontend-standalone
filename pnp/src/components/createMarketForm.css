@@ -1,0 +1,516 @@
+.create-market-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  justify-content: center;
+  position: relative;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #ccc;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="datetime-local"],
+.form-group textarea {
+  width: 100%;
+  background-color: #1f1f1f;
+  border: 1px solid #444;
+  color: #e0e0e0;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group input[type="datetime-local"]:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #ff69b4;
+  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.15);
+}
+
+.helper-text {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: -0.3rem;
+}
+
+/* Inline group styling for Collateral and Deadline */
+.form-group-inline label {
+  margin-bottom: 0.2rem; /* Add some space below label */
+}
+
+.collateral-input-group,
+.deadline-input-group {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.collateral-input-group input[type="number"] {
+  flex-grow: 1;
+  min-width: 100px;
+}
+
+.deadline-input-group input[type="number"] {
+  width: 100px; /* Slightly narrower to accommodate the wider unit selector */
+}
+
+.usdc-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #2a2a2a;
+  color: #ccc;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  border: 1px solid #444;
+}
+
+.usdc-tag img {
+  filter: brightness(0.9);
+}
+
+.approve-button,
+.create-button,
+.unit-button {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.approve-button,
+.create-button {
+  border: none;
+}
+
+.approve-button {
+  background-color: #444;
+  color: #888;
+}
+
+.approve-button:not(.disabled) {
+  background: linear-gradient(90deg, #ff69b4, #c73894);
+  color: white;
+  box-shadow: 0 3px 10px rgba(255, 105, 180, 0.2);
+}
+
+.approve-button:not(.disabled):hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+}
+
+.approve-button.disabled {
+  cursor: not-allowed;
+}
+
+.unit-selector {
+  display: inline-flex;
+  border: 1px solid #444;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.unit-button {
+  background-color: #1f1f1f;
+  color: #888;
+  border: none;
+  border-left: 1px solid #444; /* Separator */
+  padding: 0.7rem 0.6rem; /* Adjust padding to fit three buttons */
+  font-size: 0.8rem; /* Slightly smaller font size */
+}
+
+.unit-button:first-child {
+  border-left: none;
+}
+
+.unit-button.active {
+  background-color: #ff69b4;
+  color: white;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.unit-button:not(.active):hover {
+  background-color: #2f2f2f;
+  color: #bbb;
+}
+
+.create-button {
+  background: linear-gradient(90deg, #c73894, #ff69b4);
+  color: white;
+  margin-top: 0.5rem;
+  box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+  width: 100%;
+}
+
+.create-button:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
+}
+
+/* Add a subtle close button for the inline form */
+.form-close-button {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  background: transparent;
+  border: none;
+  color: #666;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  padding: 0.1rem;
+}
+
+.form-close-button:hover {
+  color: #ff69b4;
+  transform: scale(1.1);
+}
+
+.error-message {
+  color: #ff4444;
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: rgba(255, 68, 68, 0.1);
+  border: 1px solid rgba(255, 68, 68, 0.2);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  word-break: break-word;
+}
+
+.transaction-status {
+  color: #4a9eff;
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: rgba(74, 158, 255, 0.1);
+  border: 1px solid rgba(74, 158, 255, 0.2);
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.success-message {
+  color: #00c853;
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: rgba(0, 200, 83, 0.1);
+  border: 1px solid rgba(0, 200, 83, 0.2);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  animation: fadeOut 0.5s ease-out forwards;
+  animation-delay: 4.5s; /* Start fading out after 4.5s */
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.warning-text {
+  font-size: 0.8rem;
+  color: #ff4444;
+  margin-top: 0.3rem;
+  font-weight: 500;
+}
+
+.balance-info {
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.balance-info .warning-text {
+  color: #ff4444;
+  font-weight: 500;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Market Success Screen Styles */
+.market-success-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%; /* Make it take full height of its container */
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+  background-color: #121212; /* Luxurious dark background */
+  color: #e0e0e0; /* Light text color */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Clean, modern font */
+}
+
+.market-success-screen .success-title {
+  font-size: 1.8rem;
+  font-weight: 300; /* Lighter font weight for a sleek look */
+  color: #f8bbd0; /* Soft pink for the main title */
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.market-success-screen .success-question {
+  font-size: 1.5rem;
+  font-style: italic;
+  color: #ffffff;
+  background-color: rgba(255, 105, 180, 0.1); /* Subtle pink highlight */
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #ff69b4; /* Pink accent border */
+  margin-bottom: 1.5rem;
+  max-width: 80%;
+}
+
+.market-success-screen .success-liquidity {
+  font-size: 1.1rem;
+  color: #bdbdbd;
+  margin-bottom: 1rem;
+}
+
+.market-success-screen .success-liquidity .success-amount {
+  font-weight: bold;
+  color: #ff69b4; /* Pink for the amount */
+}
+
+.market-success-screen .success-transaction {
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  background-color: #1e1e1e;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #333;
+}
+
+.market-success-screen .success-transaction p {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.market-success-screen .success-tx-link {
+  font-size: 1rem;
+  color: #ff80ab; /* Brighter pink for link */
+  text-decoration: none;
+  word-break: break-all;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.market-success-screen .success-tx-link:hover {
+  color: #fce4ec; /* Lighter pink on hover */
+  text-decoration: underline;
+  text-shadow: 0 0 8px rgba(255, 105, 180, 0.5);
+}
+
+.market-success-screen .go-to-market-button {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #121212; /* Dark text on pink button */
+  background: linear-gradient(135deg, #ff69b4, #f48fb1); /* Pink gradient */
+  border: none;
+  border-radius: 50px; /* Pill shape */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+}
+
+.market-success-screen .go-to-market-button:hover {
+  background: linear-gradient(135deg, #f48fb1, #ff69b4);
+  box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Styles for the redirect countdown message */
+.market-success-screen .redirect-countdown-message {
+  font-size: 1.1rem;
+  color: #f0f0f0; /* Light color */
+  margin-top: 1.5rem; /* Space above the message */
+  margin-bottom: 1.5rem; /* Space below the message */
+}
+
+.market-success-screen .redirect-countdown-message .countdown-seconds {
+  font-weight: bold;
+  color: #ff69b4; /* Pink for the countdown number */
+  font-size: 1.3rem;
+  margin-left: 0.3em;
+  margin-right: 0.1em;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.twitter-share-button {
+  background-color: #1DA1F2;
+  color: white;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.2s ease;
+  z-index: 100;
+}
+
+.twitter-share-button:hover {
+  background-color: #0d8de0;
+}
+
+
+/* Adjust close button on success screen if it was .simple-close-button */
+.market-success-screen .simple-close-button {
+    position: absolute;
+    top: 1rem; /* Adjust as needed */
+    right: 1rem; /* Adjust as needed */
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #f0f0f0;
+    font-size: 1rem;
+    font-weight: bold;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.market-success-screen .simple-close-button:hover {
+    background-color: rgba(255, 105, 180, 0.8); /* Pink on hover */
+    color: #121212;
+    transform: scale(1.1);
+}
+
+/* Update the helper text for deadline */
+.form-group .helper-text.deadline-helper {
+  margin-top: 0.3rem;
+  font-style: italic;
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 480px) {
+  .deadline-input-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .deadline-input-group input[type="number"] {
+    width: 100%;
+  }
+  
+  .unit-selector {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  
+  .unit-button {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+/* New styles for label and guidelines link container */
+.label-with-guidelines {
+  display: flex;
+  justify-content: space-between; /* Pushes label to left, link to right */
+  align-items: center; /* Vertically aligns them if they have different heights */
+  margin-bottom: 0.5rem; /* Space below this container */
+}
+
+.label-with-guidelines label {
+  margin-bottom: 0; /* Remove default bottom margin from label */
+  color: #ccc;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Styles for the question input and guidelines link container */
+.question-input-container {
+  position: relative;
+  display: flex;
+  /* align-items: flex-start; /* No longer needed here as link is separate */
+}
+
+.question-input-container textarea {
+  flex-grow: 1; /* Textarea takes available space */
+  /* margin-right: 10px; /* No longer needed */
+}
+
+.see-guidelines-link {
+  font-size: 0.8rem;
+  color: #c996ff; /* Light purple accent, matching popup */
+  cursor: pointer;
+  text-decoration: underline;
+  /* margin-top: 5px; /* Adjust as needed or remove if align-items handles it */
+  white-space: nowrap; /* Prevent wrapping */
+  transition: color 0.2s ease;
+}
+
+.see-guidelines-link:hover {
+  color: #ae78d9;
+}
+
+/* Adjust textarea width if it was 100% before */
+.create-market-form .form-group textarea#question {
+  width: auto; /* Let flexbox handle the width */
+} 
+
+@media (max-width: 768px) {
+  .create-market-form {
+    padding: 0.2rem;
+  }
+}
