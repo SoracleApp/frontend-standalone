@@ -1,0 +1,141 @@
+.market-tile {
+  background: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 300px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  margin: 0.75rem;
+}
+
+.market-tile:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 105, 180, 0.3);
+  box-shadow: 0 8px 25px rgba(255, 105, 180, 0.1), 0 0 20px rgba(255, 105, 180, 0.05);
+}
+
+.tile-content {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  height: 100%;
+}
+
+.tile-question {
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tile-outcomes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.outcome {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 0.6rem;
+  text-align: center;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+}
+
+.outcome:hover {
+  transform: scale(1.05);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.outcome.yes {
+  border-left: 3px solid #4ade80;
+}
+
+.outcome.no {
+  border-left: 3px solid #f87171;
+}
+
+.outcome-header {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: inherit;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+}
+
+.yes .outcome-header {
+  color: #4ade80;
+}
+
+.no .outcome-header {
+  color: #f87171;
+}
+
+.outcome-price {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.outcome-multiplier {
+  font-size: 0.75rem;
+  color: #ccc;
+  margin-top: 0.15rem;
+  background-color: rgba(255, 255, 255, 0.07);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .market-tile {
+    max-width: 100%;
+    height: auto;
+    padding: 0.5rem;
+  }
+
+  .tile-question {
+    font-size: 0.95rem;
+  }
+
+  .outcome-price {
+    font-size: 1.1rem;
+  }
+
+  .outcome-multiplier {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tile-outcomes {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .market-tile {
+    padding: 0.5rem;
+  }
+
+  .tile-question {
+    font-size: 0.9rem;
+  }
+}
